@@ -83,7 +83,6 @@ function crearMalla() {
     contenedor.appendChild(bloque);
   }
 
-  // Intentamos activar los cursos que se desbloquean por los ramos ya aprobados
   for (const aprobado of ramosAprobados) {
     if (prerequisitos[aprobado]) {
       for (const nuevo of prerequisitos[aprobado]) {
