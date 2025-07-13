@@ -1,4 +1,4 @@
-/* Fondo general y tipografía */
+/* Fondo general y estilo base */
 body {
   margin: 0;
   padding: 0;
@@ -7,10 +7,10 @@ body {
   color: #4a148c;
 }
 
-/* Header y título centrado */
+/* Título principal centrado */
 header {
   background-color: #ce93d8;
-  padding: 40px 20px;
+  padding: 30px 20px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -21,60 +21,72 @@ h1 {
   color: #4a148c;
 }
 
-/* Contenedor principal */
+/* Contenedor general */
 main {
-  padding: 30px 20px;
-  max-width: 1200px;
-  margin: auto;
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
 }
 
-/* Título de cada ciclo */
+/* Cada columna de ciclo */
+.ciclo-bloque {
+  flex: 1 1 220px;
+  max-width: 250px;
+  background-color: #ede7f6;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* Título del ciclo */
 .ciclo {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  margin-top: 40px;
   margin-bottom: 15px;
   color: #6a1b9a;
   border-bottom: 2px solid #ab47bc;
   padding-bottom: 5px;
+  text-align: center;
 }
 
-/* Contenedor de ramos por fila */
+/* Contenedor de los ramos */
 .ciclo-contenedor {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Cada ramo como caja interactiva */
+/* Ramos base */
 .ramo {
-  background-color: #d1c4e9;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: #e1bee7;
   color: #4a148c;
-  padding: 15px;
-  border-radius: 12px;
-  min-width: 200px;
-  text-align: center;
   opacity: 0.5;
+  border: 2px dashed #b39ddb;
+  text-align: center;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Ramos disponibles para clic */
+/* Ramos disponibles para hacer clic */
 .ramo.activo {
   cursor: pointer;
-  background-color: white;
-  opacity: 1;
+  background-color: #ffffff;
   border: 2px solid #8e24aa;
+  opacity: 1;
 }
 
-/* Hover sobre ramo disponible */
+/* Hover estético */
 .ramo.activo:hover {
-  background-color: #f3e5f5;
+  background-color: #fce4ec;
 }
 
-/* Ramos ya aprobados */
+/* Ramos aprobados */
 .ramo.aprobado {
   background-color: #8e24aa;
   color: white;
+  border: none;
   text-decoration: line-through;
 }
