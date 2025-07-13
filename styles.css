@@ -1,17 +1,20 @@
+/* Fondo general de la página: lila claro */
 body {
   font-family: Arial, sans-serif;
-  background-color: #fdfdfd;
+  background-color: #f3e8ff; /* lila claro */
   color: #333;
   margin: 0;
   padding: 20px;
 }
 
+/* Contenedor principal */
 #malla {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Título de cada ciclo */
 .ciclo {
   font-size: 24px;
   font-weight: bold;
@@ -19,8 +22,9 @@ body {
   color: #6a0dad;
 }
 
+/* Caja básica para cada ramo */
 .ramo {
-  background-color: #e6e6fa; /* color base lila claro */
+  background-color: #d1b3ff; /* color base para ramos bloqueados */
   border: 2px solid #ccc;
   border-radius: 10px;
   padding: 10px 15px;
@@ -30,17 +34,20 @@ body {
   font-weight: bold;
   font-size: 14px;
   transition: 0.3s;
+  color: #333;
 }
 
+/* Ramo disponible (clicable): fondo blanco */
 .ramo.activo {
-  background-color: white;     /* Fondo blanco para cursos disponibles */
-  color: #6a0dad;              /* Texto lila */
-  border: 2px solid #6a0dad;   /* Borde lila */
+  background-color: white;
+  color: #6a0dad;
+  border: 2px solid #6a0dad;
   cursor: pointer;
 }
 
+/* Ramo aprobado: fondo lila oscuro */
 .ramo.aprobado {
-  background-color: #6a0dad; /* Fondo lila oscuro al aprobar */
+  background-color: #6a0dad;
   color: white;
   border: 2px solid #4b0082;
 }
