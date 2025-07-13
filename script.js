@@ -39,14 +39,8 @@ const ciclos = {
   "Ciclo X": ["Plan de Marketing", "Investigación en Marketing II"]
 };
 
-// Obtener todos los ramos de todos los ciclos
 const todosLosRamos = Object.values(ciclos).flat();
-
-// Detectar ramos que NO tienen prerequisitos
-const ramosSinRequisitos = todosLosRamos.filter(ramo => {
-  return !Object.values(prerequisitos).flat().includes(ramo);
-});
-
+const ramosSinRequisitos = todosLosRamos.filter(ramo => !Object.values(prerequisitos).flat().includes(ramo));
 const ramosAprobados = new Set();
 const ramosDisponibles = new Set(ramosSinRequisitos);
 
@@ -59,6 +53,9 @@ function crearMalla() {
     titulo.textContent = ciclo;
     contenedor.appendChild(titulo);
 
+    const fila = document.createElement("div");
+    fila.className = "ciclo-contenedor";
+
     for (const ramo of ciclos[ciclo]) {
       const div = document.createElement("div");
       div.className = "ramo";
@@ -70,8 +67,10 @@ function crearMalla() {
         div.addEventListener("click", () => aprobarRamo(ramo));
       }
 
-      contenedor.appendChild(div);
+      fila.appendChild(div);
     }
+
+    contenedor.appendChild(fila);
   }
 }
 
@@ -87,7 +86,7 @@ function aprobarRamo(nombre) {
       for (const nuevoRamo of prerequisitos[prereq]) {
         ramosDisponibles.add(nuevoRamo);
         const nuevoDiv = document.getElementById(nuevoRamo);
-        if (nuevoDiv) {
+        if (nuevoDiv && !nuevoDiv.classList.contains("aprobado")) {
           nuevoDiv.classList.add("activo");
           nuevoDiv.addEventListener("click", () => aprobarRamo(nuevoRamo));
         }
