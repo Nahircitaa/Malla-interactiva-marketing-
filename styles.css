@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
 body {
-  background-color: #f5e6ff; /* fondo aesthetic lila */
+  background-color: #f6e6ff;
   font-family: 'Poppins', sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 30px;
   color: #4b0082;
 }
 
@@ -11,61 +13,71 @@ body {
   margin-bottom: 40px;
 }
 
-h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
+#header h1 {
+  font-size: 2.8em;
+  font-weight: bold;
   color: #8e44ad;
+  text-shadow: 1px 1px 3px rgba(136, 66, 181, 0.3);
+  margin: 0 auto;
 }
 
-p {
+#header p {
   font-size: 1.1em;
   color: #5d3a8d;
 }
 
-#malla {
+.malla {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 40px;
 }
 
-/* Títulos de ciclo */
+/* Ciclo y sus cursos */
 .ciclo {
-  font-size: 1.5em;
+  font-size: 1.6em;
   font-weight: 600;
-  margin-top: 50px;
+  margin-bottom: 15px;
   color: #6a0dad;
   text-shadow: 1px 1px 2px #d1b3ff;
+  text-align: center;
 }
 
-/* Cursos generales */
+/* Contenedor de ramos por ciclo */
+.ciclo-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Diseño de cada curso */
 .ramo {
   background-color: #e8d6ff;
   border: 2px dashed #cda5ff;
   border-radius: 12px;
   padding: 14px 20px;
-  margin: 8px;
-  width: 320px;
+  width: 280px;
   text-align: center;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   color: #6a0dad;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   user-select: none;
 }
 
-/* Cursos disponibles */
+/* Disponible para aprobar */
 .ramo.activo {
-  background-color: #ffffff !important;
-  color: #6a0dad !important;
+  background-color: #ffffff;
+  color: #6a0dad;
   border: 2px solid #ba68c8;
   cursor: pointer;
 }
 
-/* Cursos ya aprobados */
+/* Ya aprobado */
 .ramo.aprobado {
   background-color: #ba68c8 !important;
-  color: #ffffff !important;
+  color: white !important;
   border: 2px solid #7b1fa2;
   text-decoration: line-through;
 }
