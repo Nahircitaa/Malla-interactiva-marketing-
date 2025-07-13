@@ -1,13 +1,15 @@
+/* Fondo general y tipografía */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f5e9ff;
-  color: #3c0064;
+  background-color: #f3e5f5;
+  color: #4a148c;
 }
 
+/* Header y título centrado */
 header {
-  background-color: #caa5f5;
+  background-color: #ce93d8;
   padding: 40px 20px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -16,10 +18,10 @@ header {
 h1 {
   margin: 0;
   font-size: 2.8rem;
-  color: #32003d;
+  color: #4a148c;
 }
 
-/* Main container */
+/* Contenedor principal */
 main {
   padding: 30px 20px;
   max-width: 1200px;
@@ -32,8 +34,8 @@ main {
   font-weight: bold;
   margin-top: 40px;
   margin-bottom: 15px;
-  color: #5c2a8d;
-  border-bottom: 2px solid #bfa5e3;
+  color: #6a1b9a;
+  border-bottom: 2px solid #ab47bc;
   padding-bottom: 5px;
 }
 
@@ -44,10 +46,10 @@ main {
   gap: 15px;
 }
 
-/* Cada ramo */
+/* Cada ramo como caja interactiva */
 .ramo {
-  background-color: #e3ccfa;
-  color: #4a2c70;
+  background-color: #d1c4e9;
+  color: #4a148c;
   padding: 15px;
   border-radius: 12px;
   min-width: 200px;
@@ -57,22 +59,22 @@ main {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Disponible para hacer click */
+/* Ramos disponibles para clic */
 .ramo.activo {
   cursor: pointer;
   background-color: white;
   opacity: 1;
-  border: 2px solid #a24bff;
+  border: 2px solid #8e24aa;
 }
 
-/* Hover sobre activo */
+/* Hover sobre ramo disponible */
 .ramo.activo:hover {
-  background-color: #f3e0ff;
+  background-color: #f3e5f5;
 }
 
-/* Aprobado */
+/* Ramos ya aprobados */
 .ramo.aprobado {
-  background-color: #a24bff;
+  background-color: #8e24aa;
   color: white;
   text-decoration: line-through;
 }
