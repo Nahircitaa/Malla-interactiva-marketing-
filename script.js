@@ -40,9 +40,7 @@ const ciclos = {
 };
 
 const todosLosRamos = Object.values(ciclos).flat();
-const ramosSinRequisitos = todosLosRamos.filter(ramo => !Object.values(prerequisitos).flat().includes(ramo));
 const ramosAprobados = new Set(JSON.parse(localStorage.getItem("ramosAprobados") || "[]"));
-const ramosDisponibles = new Set(ramosSinRequisitos);
 
 function guardarProgreso() {
   localStorage.setItem("ramosAprobados", JSON.stringify([...ramosAprobados]));
@@ -59,6 +57,29 @@ function crearBotonReset() {
     }
   };
   document.body.prepend(boton);
+}
+
+function todosLosPrerequisitosAprobados(ramo) {
+  return Object.entries(prerequisitos)
+    .filter(([req, desbloquea]) => desbloquea.includes(ramo))
+    .every(([req]) => ramosAprobados.has(req));
+}
+
+function actualizarEstadoRamos() {
+  for (const ramo of todosLosRamos) {
+    const div = document.getElementById(ramo);
+    div.classList.remove("aprobado", "activo");
+
+    if (ramosAprobados.has(ramo)) {
+      div.classList.add("aprobado");
+      div.onclick = () => deseleccionarRamo(ramo);
+    } else if (todosLosPrerequisitosAprobados(ramo)) {
+      div.classList.add("activo");
+      div.onclick = () => aprobarRamo(ramo);
+    } else {
+      div.onclick = null;
+    }
+  }
 }
 
 function crearMalla() {
@@ -81,15 +102,6 @@ function crearMalla() {
       div.className = "ramo";
       div.textContent = ramo;
       div.id = ramo;
-
-      if (ramosAprobados.has(ramo)) {
-        div.classList.add("aprobado");
-        div.addEventListener("click", () => deseleccionarRamo(ramo));
-      } else if (ramosDisponibles.has(ramo)) {
-        div.classList.add("activo");
-        div.addEventListener("click", () => aprobarRamo(ramo));
-      }
-
       fila.appendChild(div);
     }
 
@@ -97,57 +109,19 @@ function crearMalla() {
     contenedor.appendChild(bloque);
   }
 
-  for (const aprobado of ramosAprobados) {
-    if (prerequisitos[aprobado]) {
-      for (const nuevo of prerequisitos[aprobado]) {
-        ramosDisponibles.add(nuevo);
-        const div = document.getElementById(nuevo);
-        if (div && !ramosAprobados.has(nuevo)) {
-          div.classList.add("activo");
-          div.addEventListener("click", () => aprobarRamo(nuevo));
-        }
-      }
-    }
-  }
+  actualizarEstadoRamos();
 }
 
 function aprobarRamo(nombre) {
-  if (!ramosDisponibles.has(nombre) || ramosAprobados.has(nombre)) return;
-
   ramosAprobados.add(nombre);
   guardarProgreso();
-
-  const div = document.getElementById(nombre);
-  div.classList.add("aprobado");
-  div.classList.remove("activo");
-  div.removeEventListener("click", () => aprobarRamo(nombre));
-  div.addEventListener("click", () => deseleccionarRamo(nombre));
-
-  div.animate([
-    { transform: "scale(1)", backgroundColor: "#ffffff" },
-    { transform: "scale(1.05)", backgroundColor: "#8e24aa" },
-    { transform: "scale(1)", backgroundColor: "#8e24aa" }
-  ], {
-    duration: 300,
-    easing: "ease-in-out"
-  });
-
-  if (prerequisitos[nombre]) {
-    for (const nuevoRamo of prerequisitos[nombre]) {
-      ramosDisponibles.add(nuevoRamo);
-      const nuevoDiv = document.getElementById(nuevoRamo);
-      if (nuevoDiv && !ramosAprobados.has(nuevoRamo)) {
-        nuevoDiv.classList.add("activo");
-        nuevoDiv.addEventListener("click", () => aprobarRamo(nuevoRamo));
-      }
-    }
-  }
+  actualizarEstadoRamos();
 }
 
 function deseleccionarRamo(nombre) {
   ramosAprobados.delete(nombre);
   guardarProgreso();
-  location.reload(); // Recarga para reevaluar los prerequisitos
+  actualizarEstadoRamos();
 }
 
 window.onload = () => {
