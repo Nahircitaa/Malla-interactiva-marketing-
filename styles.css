@@ -1,92 +1,69 @@
-/* Fondo general y estilo base */
 body {
-  margin: 0;
-  padding: 0;
+  background-color: #f5e6ff;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f3e5f5;
-  color: #4a148c;
-}
-
-/* Título principal centrado */
-header {
-  background-color: #ce93d8;
-  padding: 30px 20px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #333;
+  margin: 0;
+  padding: 2rem;
 }
 
 h1 {
-  margin: 0;
-  font-size: 2.8rem;
-  color: #4a148c;
-}
-
-/* Contenedor general */
-main {
-  padding: 30px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-}
-
-/* Cada columna de ciclo */
-.ciclo-bloque {
-  flex: 1 1 220px;
-  max-width: 250px;
-  background-color: #ede7f6;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-/* Título del ciclo */
-.ciclo {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #6a1b9a;
-  border-bottom: 2px solid #ab47bc;
-  padding-bottom: 5px;
   text-align: center;
+  color: #6a1b9a;
+  margin-bottom: 2rem;
 }
 
-/* Contenedor de los ramos */
+#malla {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.ciclo-bloque {
+  flex: 0 0 auto;
+  background: #fefcff;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px #c9a4e8;
+  min-width: 200px;
+}
+
+.ciclo {
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #7b1fa2;
+  margin-bottom: 1rem;
+}
+
 .ciclo-contenedor {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.5rem;
 }
 
-/* Ramos base */
 .ramo {
-  padding: 10px 15px;
-  border-radius: 10px;
-  background-color: #e1bee7;
-  color: #4a148c;
-  opacity: 0.5;
   border: 2px dashed #b39ddb;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
   text-align: center;
-  transition: all 0.3s ease;
+  background-color: #f3e5f5;
+  color: #4a148c;
+  cursor: not-allowed;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Ramos disponibles para hacer clic */
 .ramo.activo {
+  border-style: solid;
+  border-color: #8e24aa;
+  background-color: white;
+  color: #4a148c;
   cursor: pointer;
-  background-color: #ffffff;
-  border: 2px solid #8e24aa;
-  opacity: 1;
 }
 
-/* Hover estético */
-.ramo.activo:hover {
-  background-color: #fce4ec;
-}
-
-/* Ramos aprobados */
 .ramo.aprobado {
   background-color: #8e24aa;
   color: white;
   border: none;
-  text-decoration: line-through;
+  transform: scale(1.02);
 }
