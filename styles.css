@@ -1,51 +1,46 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f3ff;
+  background-color: #f4f4f4;
   color: #333;
+  margin: 0;
   padding: 20px;
 }
 
-h1 {
-  color: #6a0dad;
-  text-align: center;
+#malla {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ciclo {
+  font-size: 24px;
   font-weight: bold;
-  margin-top: 30px;
-  font-size: 20px;
+  margin-top: 40px;
   color: #6a0dad;
-  border-bottom: 2px solid #b78fff;
-  padding-bottom: 5px;
-}
-
-.malla {
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .ramo {
-  padding: 10px;
-  margin: 5px 0;
-  border: 2px solid #d9b3ff;
+  background-color: #e6e6fa;
+  border: 2px solid #ccc;
   border-radius: 10px;
-  background-color: #eee1ff;
-  cursor: not-allowed;
-  opacity: 0.5;
-  transition: all 0.3s ease;
+  padding: 10px 15px;
+  margin: 8px;
+  width: 280px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.3s;
 }
 
 .ramo.activo {
-  background-color: white;
-  color: #6a0dad; /* texto lila para que contraste */
+  background-color: white; /* Fondo blanco para cursos disponibles */
+  color: #6a0dad;           /* Texto lila */
   border: 2px solid #6a0dad;
   cursor: pointer;
-
 }
 
 .ramo.aprobado {
-  background-color: #b98cff;
-  border-color: #6f3cc2;
+  background-color: #6a0dad; /* Fondo lila para aprobados */
   color: white;
-  font-weight: bold;
+  border: 2px solid #4b0082;
 }
