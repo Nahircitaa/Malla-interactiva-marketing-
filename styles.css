@@ -36,10 +36,11 @@ h1 {
 }
 
 .ramo.activo {
+  background-color: white;
+  color: #6a0dad; /* texto lila para que contraste */
+  border: 2px solid #6a0dad;
   cursor: pointer;
-  opacity: 1;
-  background-color: #d6aaff;
-  border-color: #a87fe0;
+
 }
 
 .ramo.aprobado {
