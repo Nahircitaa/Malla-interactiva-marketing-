@@ -84,6 +84,7 @@ function crearMalla() {
 
       if (ramosAprobados.has(ramo)) {
         div.classList.add("aprobado");
+        div.addEventListener("click", () => deseleccionarRamo(ramo));
       } else if (ramosDisponibles.has(ramo)) {
         div.classList.add("activo");
         div.addEventListener("click", () => aprobarRamo(ramo));
@@ -119,6 +120,8 @@ function aprobarRamo(nombre) {
   const div = document.getElementById(nombre);
   div.classList.add("aprobado");
   div.classList.remove("activo");
+  div.removeEventListener("click", () => aprobarRamo(nombre));
+  div.addEventListener("click", () => deseleccionarRamo(nombre));
 
   div.animate([
     { transform: "scale(1)", backgroundColor: "#ffffff" },
@@ -129,18 +132,22 @@ function aprobarRamo(nombre) {
     easing: "ease-in-out"
   });
 
-  for (const prereq in prerequisitos) {
-    if (nombre === prereq) {
-      for (const nuevoRamo of prerequisitos[prereq]) {
-        ramosDisponibles.add(nuevoRamo);
-        const nuevoDiv = document.getElementById(nuevoRamo);
-        if (nuevoDiv && !ramosAprobados.has(nuevoRamo)) {
-          nuevoDiv.classList.add("activo");
-          nuevoDiv.addEventListener("click", () => aprobarRamo(nuevoRamo));
-        }
+  if (prerequisitos[nombre]) {
+    for (const nuevoRamo of prerequisitos[nombre]) {
+      ramosDisponibles.add(nuevoRamo);
+      const nuevoDiv = document.getElementById(nuevoRamo);
+      if (nuevoDiv && !ramosAprobados.has(nuevoRamo)) {
+        nuevoDiv.classList.add("activo");
+        nuevoDiv.addEventListener("click", () => aprobarRamo(nuevoRamo));
       }
     }
   }
+}
+
+function deseleccionarRamo(nombre) {
+  ramosAprobados.delete(nombre);
+  guardarProgreso();
+  location.reload(); // Recarga para reevaluar los prerequisitos
 }
 
 window.onload = () => {
