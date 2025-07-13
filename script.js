@@ -1,56 +1,73 @@
-const cursos = {
-  "Nivelación en matemáticas": ["Matemática I", "Economía General I"],
-  "Nivelación en informática": ["Estadística I", "Fundamentos de Finanzas"],
-  "Nivelación en lenguaje": ["Lenguaje I"],
-  "Matemática I": ["Estadística I"],
-  "Economía General I": ["Economía General II"],
-  "Lenguaje I": ["Lenguaje II"],
-  "Fundamentos de las Ciencias Empresariales": ["Diseño Organizacional y Estrategia"],
-};
-
-const ciclos = {
-  "Ciclo 0": ["Nivelación en matemáticas", "Nivelación en informática", "Nivelación en lenguaje"],
-  "Ciclo I": ["Matemática I", "Economía General I", "Lenguaje I", "Fundamentos de las Ciencias Empresariales"],
-  "Ciclo II": ["Estadística I", "Fundamentos de Finanzas", "Lenguaje II"],
-  "Ciclo III": ["Economía General II", "Diseño Organizacional y Estrategia"]
-};
-
-const aprobados = new Set();
-const desbloqueados = new Set(Object.keys(ciclos["Ciclo 0"]));
-
-function crearMalla() {
-  const cont = document.getElementById("malla");
-
-  for (const ciclo in ciclos) {
-    const titulo = document.createElement("div");
-    titulo.className = "ciclo";
-    titulo.textContent = ciclo;
-    cont.appendChild(titulo);
-
-    for (const ramo of ciclos[ciclo]) {
-      const div = document.createElement("div");
-      div.className = "ramo";
-      div.textContent = ramo;
-      div.id = ramo;
-      if (desbloqueados.has(ramo)) div.classList.add("activo");
-      div.addEventListener("click", () => aprobar(ramo));
-      cont.appendChild(div);
-    }
-  }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3e8ff;
+  margin: 0;
+  padding: 20px;
+  color: #4c1d95;
 }
 
-function aprobar(nombre) {
-  if (!desbloqueados.has(nombre) || aprobados.has(nombre)) return;
-  aprobados.add(nombre);
-  document.getElementById(nombre).classList.add("aprobado");
-
-  if (cursos[nombre]) {
-    for (const nuevo of cursos[nombre]) {
-      desbloqueados.add(nuevo);
-      const el = document.getElementById(nuevo);
-      if (el) el.classList.add("activo");
-    }
-  }
+h1 {
+  text-align: center;
+  color: #6b21a8;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
 }
 
-crearMalla();
+.malla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.ramo {
+  background-color: #f5d0fe;
+  border: 2px solid #e879f9;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  font-weight: 500;
+  cursor: not-allowed;
+  opacity: 0.4;
+  transition: background-color 0.3s, opacity 0.3s, transform 0.2s;
+  user-select: none;
+}
+
+.ramo.activo {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.ramo.activo:hover {
+  background-color: #e9d5ff;
+  transform: scale(1.03);
+}
+
+.ramo.aprobado {
+  background-color: #a855f7;
+  color: white;
+  text-decoration: line-through;
+  border-color: #7e22ce;
+}
+
+.ciclo {
+  grid-column: 1 / -1;
+  background-color: #ede9fe;
+  color: #5b21b6;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+  margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+  .malla {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+  h1 {
+    font-size: 2rem;
+  }
+}
