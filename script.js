@@ -1,73 +1,91 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f3e8ff;
-  margin: 0;
-  padding: 20px;
-  color: #4c1d95;
-}
+const prerequisitos = {
+  "Nivelación en matemáticas": ["Matemática I", "Economía General I"],
+  "Nivelación en informática": ["Estadística I", "Fundamentos de Finanzas"],
+  "Nivelación en lenguaje": ["Lenguaje I"],
+  "Matemática I": ["Estadística I"],
+  "Economía General I": ["Economía General II"],
+  "Lenguaje I": ["Lenguaje II"],
+  "Fundamentos de las Ciencias Empresariales": ["Diseño Organizacional y Estrategia"],
+  "Estadística I": ["Métodos Cuantitativos para la Gestión en las Organizaciones", "Analítica de Datos para los Negocios", "Finanzas Corporativas I"],
+  "Fundamentos de Marketing": ["Marketing Sostenible", "Gestión de Productos", "International Marketing", "Marketing B2B", "Estrategia"],
+  "Lenguaje II": ["Bloque de Procesos Sociales"],
+  "Fundamentos de Contabilidad": ["Contabilidad Financiera Intermedia", "Fundamentos de Finanzas"],
+  "Comportamiento del Consumidor": ["Gestión de Productos"],
+  "Analítica de Datos para los Negocios": ["Análisis Multivariado para los Negocios"],
+  "Diseño Organizacional y Estrategia": ["Innovación y Gestión en Negocios Digitales"],
+  "Gestión de Productos": ["Pricing", "Canales de Distribución", "Investigación de Mercados", "Estrategia de Comunicación y promoción", "Estrategia de Branding", "Marketing de Servicios"],
+  "Análisis Multivariado para los Negocios": ["Sistemas de Información y Análisis de Datos", "Investigación de Mercados Aplicada"],
+  "Investigación de Mercados": ["Investigación de Mercados Aplicada"],
+  "Pricing": ["Métricas y Analítica de Marketing"],
+  "Fundamentos de Finanzas": ["Finanzas Corporativas I", "Métricas y Analítica de Marketing"],
+  "Canales de Distribución": ["Trade Marketing", "Métricas y Analítica de Marketing"],
+  "Estrategias de Comunicación y promoción": ["Marketing Digital y Redes Sociales", "Business Agility", "Métricas y Analítica de Marketing"],
+  "Investigación Académica": ["Investigación en Marketing I"],
+  "Trade Marketing": ["Gestión Comercial"],
+  "Investigación en Marketing I": ["Investigación en Marketing II"]
+};
 
-h1 {
-  text-align: center;
-  color: #6b21a8;
-  margin-bottom: 40px;
-  font-size: 2.5rem;
-}
+const ciclos = {
+  "Ciclo 0": ["Nivelación en matemáticas", "Nivelación en informática", "Nivelación en lenguaje"],
+  "Ciclo I": ["Matemática I", "Economía General I", "Lenguaje I", "Fundamentos de las Ciencias Empresariales"],
+  "Ciclo II": ["Estadística I", "Fundamentos de Marketing", "Lenguaje II", "Fundamentos de Contabilidad", "Bloque de Ciencias Sociales"],
+  "Ciclo III": ["Comportamiento del Consumidor", "Marketing sostenible", "Analítica de Datos para los Negocios", "Contabilidad Financiera Intermedia", "Diseño Organizacional y Estrategia", "Economía General II"],
+  "Ciclo IV": ["Métodos Cuantitativos para la Gestión en las Organizaciones", "Gestión de Productos", "Análisis Multivariado para los Negocios", "Ética", "Bloque de Procesos Sociales"],
+  "Ciclo V": ["Pricing", "Investigación de Mercados", "Estrategias de Branding", "Sistemas de Información y Análisis de Datos", "Fundamentos de Finanzas", "Bloque de Desarrollo del Pensamiento Crítico"],
+  "Ciclo VI": ["Canales de Distribución", "Investigación de Mercados Aplicada", "Estrategias de Comunicación y promoción", "Innovación y Gestión en Negocios Digitales", "Finanzas Corporativas I", "Investigación Académica"],
+  "Ciclo VII": ["Trade Marketing", "Marketing Relacional y CRM", "Marketing Digital y Redes Sociales", "Business Agility", "Bloque Desarrollo Personal", "Bloque de Desarrollo del Pensamiento Crítico"],
+  "Ciclo VIII": ["Gestión Comercial", "Marketing de Servicios", "Marketing B2B", "Métricas y Analítica de Marketing", "Estrategia", "Bloque introducción al Quehacer Científico"],
+  "Ciclo IX": ["International Marketing", "Investigación en Marketing I", "Proyecto Social"],
+  "Ciclo X": ["Plan de Marketing", "Investigación en Marketing II"]
+};
 
-.malla {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  max-width: 1200px;
-  margin: auto;
-}
+const ramosAprobados = new Set();
+const ramosDisponibles = new Set(ciclos["Ciclo 0"]);
 
-.ramo {
-  background-color: #f5d0fe;
-  border: 2px solid #e879f9;
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
-  font-weight: 500;
-  cursor: not-allowed;
-  opacity: 0.4;
-  transition: background-color 0.3s, opacity 0.3s, transform 0.2s;
-  user-select: none;
-}
+function crearMalla() {
+  const contenedor = document.getElementById("malla");
 
-.ramo.activo {
-  cursor: pointer;
-  opacity: 1;
-}
+  for (const ciclo in ciclos) {
+    const titulo = document.createElement("div");
+    titulo.className = "ciclo";
+    titulo.textContent = ciclo;
+    contenedor.appendChild(titulo);
 
-.ramo.activo:hover {
-  background-color: #e9d5ff;
-  transform: scale(1.03);
-}
+    for (const ramo of ciclos[ciclo]) {
+      const div = document.createElement("div");
+      div.className = "ramo";
+      div.textContent = ramo;
+      div.id = ramo;
 
-.ramo.aprobado {
-  background-color: #a855f7;
-  color: white;
-  text-decoration: line-through;
-  border-color: #7e22ce;
-}
+      if (ramosDisponibles.has(ramo)) {
+        div.classList.add("activo");
+        div.addEventListener("click", () => aprobarRamo(ramo));
+      }
 
-.ciclo {
-  grid-column: 1 / -1;
-  background-color: #ede9fe;
-  color: #5b21b6;
-  font-weight: bold;
-  font-size: 1.2rem;
-  text-align: center;
-  padding: 8px;
-  border-radius: 8px;
-  margin-top: 30px;
-}
-
-@media (max-width: 600px) {
-  .malla {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  }
-  h1 {
-    font-size: 2rem;
+      contenedor.appendChild(div);
+    }
   }
 }
+
+function aprobarRamo(nombre) {
+  if (!ramosDisponibles.has(nombre) || ramosAprobados.has(nombre)) return;
+
+  ramosAprobados.add(nombre);
+  const div = document.getElementById(nombre);
+  div.classList.add("aprobado");
+
+  for (const prereq in prerequisitos) {
+    if (nombre === prereq) {
+      for (const nuevoRamo of prerequisitos[prereq]) {
+        ramosDisponibles.add(nuevoRamo);
+        const nuevoDiv = document.getElementById(nuevoRamo);
+        if (nuevoDiv) {
+          nuevoDiv.classList.add("activo");
+          nuevoDiv.addEventListener("click", () => aprobarRamo(nuevoRamo));
+        }
+      }
+    }
+  }
+}
+
+window.onload = crearMalla;
