@@ -6,14 +6,24 @@ const cursos = {
   "Economía General I": ["Economía General II"],
   "Lenguaje I": ["Lenguaje II"],
   "Fundamentos de las Ciencias Empresariales": ["Diseño Organizacional y Estrategia"],
-  "Estadística I": ["Métodos Cuantitativos para la Gestión en las Organizaciones", "Analítica de Datos para los Negocios", "Finanzas Corporativas I"],
-  "Fundamentos de Marketing": ["Marketing sostenible", "Gestión de Productos", "International Marketing", "Marketing B2B", "Estrategia"],
+  "Estadística I": [
+    "Métodos Cuantitativos para la Gestión en las Organizaciones",
+    "Analítica de Datos para los Negocios",
+    "Finanzas Corporativas I"
+  ],
+  "Fundamentos de Marketing": [
+    "Marketing sostenible", "Gestión de Productos", "International Marketing",
+    "Marketing B2B", "Estrategia"
+  ],
   "Lenguaje II": ["Bloque de Procesos Sociales"],
   "Fundamentos de Contabilidad": ["Contabilidad Financiera Intermedia", "Fundamentos de Finanzas"],
   "Comportamiento del Consumidor": ["Gestión de Productos"],
   "Analítica de Datos para los Negocios": ["Análisis Multivariado para los Negocios"],
   "Diseño Organizacional y Estrategia": ["Innovación y Gestión en Negocios Digitales"],
-  "Gestión de Productos": ["Pricing", "Canales de Distribución", "Investigación de Mercados", "Estrategia de Comunicación y promoción", "Estrategias de Branding", "Marketing de Servicios"],
+  "Gestión de Productos": [
+    "Pricing", "Canales de Distribución", "Investigación de Mercados",
+    "Estrategia de Comunicación y promoción", "Estrategias de Branding", "Marketing de Servicios"
+  ],
   "Análisis Multivariado para los Negocios": ["Sistemas de Información y Análisis de Datos", "Investigación de Mercados Aplicada"],
   "Pricing": ["Métricas y Analítica de Marketing"],
   "Investigación de Mercados": ["Investigación de Mercados Aplicada"],
@@ -36,22 +46,28 @@ const ciclos = {
     "Estadística I", "Fundamentos de Marketing", "Lenguaje II", "Fundamentos de Contabilidad", "Bloque de Ciencias Sociales"
   ],
   "Ciclo III": [
-    "Comportamiento del Consumidor", "Marketing sostenible", "Analítica de Datos para los Negocios", "Contabilidad Financiera Intermedia", "Diseño Organizacional y Estrategia", "Economía General II"
+    "Comportamiento del Consumidor", "Marketing sostenible", "Analítica de Datos para los Negocios",
+    "Contabilidad Financiera Intermedia", "Diseño Organizacional y Estrategia", "Economía General II"
   ],
   "Ciclo IV": [
-    "Métodos Cuantitativos para la Gestión en las Organizaciones", "Gestión de Productos", "Análisis Multivariado para los Negocios", "Ética", "Bloque de Procesos Sociales"
+    "Métodos Cuantitativos para la Gestión en las Organizaciones", "Gestión de Productos",
+    "Análisis Multivariado para los Negocios", "Ética", "Bloque de Procesos Sociales"
   ],
   "Ciclo V": [
-    "Pricing", "Investigación de Mercados", "Estrategias de Branding", "Sistemas de Información y Análisis de Datos", "Fundamentos de Finanzas", "Bloque de Desarrollo del Pensamiento Crítico"
+    "Pricing", "Investigación de Mercados", "Estrategias de Branding",
+    "Sistemas de Información y Análisis de Datos", "Fundamentos de Finanzas", "Bloque de Desarrollo del Pensamiento Crítico"
   ],
   "Ciclo VI": [
-    "Canales de Distribución", "Investigación de Mercados Aplicada", "Estrategia de Comunicación y promoción", "Innovación y Gestión en Negocios Digitales", "Finanzas Corporativas I", "Investigación Académica"
+    "Canales de Distribución", "Investigación de Mercados Aplicada", "Estrategia de Comunicación y promoción",
+    "Innovación y Gestión en Negocios Digitales", "Finanzas Corporativas I", "Investigación Académica"
   ],
   "Ciclo VII": [
-    "Trade Marketing", "Marketing Relacional y CRM", "Marketing Digital y Redes Sociales", "Business Agility", "Bloque Desarrollo Personal", "Bloque de Desarrollo del Pensamiento Crítico"
+    "Trade Marketing", "Marketing Relacional y CRM", "Marketing Digital y Redes Sociales",
+    "Business Agility", "Bloque Desarrollo Personal", "Bloque de Desarrollo del Pensamiento Crítico"
   ],
   "Ciclo VIII": [
-    "Gestión Comercial", "Marketing de Servicios", "Marketing B2B", "Métricas y Analítica de Marketing", "Estrategia", "Bloque introducción al Quehacer Científico"
+    "Gestión Comercial", "Marketing de Servicios", "Marketing B2B",
+    "Métricas y Analítica de Marketing", "Estrategia", "Bloque introducción al Quehacer Científico"
   ],
   "Ciclo IX": [
     "International Marketing", "Investigación en Marketing I", "Proyecto Social"
@@ -66,6 +82,7 @@ const desbloqueados = new Set(Object.keys(ciclos["Ciclo 0"]));
 
 function crearMalla() {
   const container = document.getElementById("malla");
+
   for (const ciclo in ciclos) {
     const titulo = document.createElement("div");
     titulo.className = "ciclo";
@@ -77,7 +94,11 @@ function crearMalla() {
       div.className = "ramo";
       div.textContent = ramo;
       div.id = ramo;
-      if (desbloqueados.has(ramo)) div.classList.add("activo");
+
+      if (desbloqueados.has(ramo)) {
+        div.classList.add("activo");
+      }
+
       div.addEventListener("click", () => aprobarRamo(ramo));
       container.appendChild(div);
     }
@@ -85,17 +106,21 @@ function crearMalla() {
 }
 
 function aprobarRamo(nombre) {
-  if (aprobados.has(nombre)) return;
+  if (!desbloqueados.has(nombre) || aprobados.has(nombre)) return;
+
   aprobados.add(nombre);
   const ramo = document.getElementById(nombre);
   ramo.classList.add("aprobado");
+
   if (cursos[nombre]) {
-    for (const siguiente of cursos[nombre]) {
-      desbloqueados.add(siguiente);
-      const nodo = document.getElementById(siguiente);
-      if (nodo) nodo.classList.add("activo");
+    for (const dependiente of cursos[nombre]) {
+      const elem = document.getElementById(dependiente);
+      if (elem) {
+        elem.classList.add("activo");
+        desbloqueados.add(dependiente);
+      }
     }
   }
 }
 
-document.addEventListener("DOMContentLoaded", crearMalla);
+crearMalla();
