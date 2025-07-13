@@ -39,19 +39,16 @@ const ciclos = {
   "Ciclo X": ["Plan de Marketing", "Investigación en Marketing II"]
 };
 
-const ramosAprobados = new Set();
-// Obtener todos los ramos que existen en la malla
+// Obtener todos los ramos de todos los ciclos
 const todosLosRamos = Object.values(ciclos).flat();
 
 // Detectar ramos que NO tienen prerequisitos
 const ramosSinRequisitos = todosLosRamos.filter(ramo => {
-  // Si no está listado como llave en "prerequisitos", entonces no depende de otro ramo
   return !Object.values(prerequisitos).flat().includes(ramo);
 });
 
-// Marcar como disponibles todos los ramos sin prerequisitos
+const ramosAprobados = new Set();
 const ramosDisponibles = new Set(ramosSinRequisitos);
-
 
 function crearMalla() {
   const contenedor = document.getElementById("malla");
