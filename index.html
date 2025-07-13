@@ -2,13 +2,120 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Malla Interactiva</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f8f5ff;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      color: #4b0082;
+    }
+    h1 {
+      color: #6a0dad;
+      margin-bottom: 20px;
+    }
+    .malla {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .ramo {
+      background-color: #e9d5ff;
+      border: 2px solid #c084fc;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: not-allowed;
+      opacity: 0.4;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+    .ramo.activo {
+      cursor: pointer;
+      opacity: 1;
+    }
+    .ramo.activo:hover {
+      background-color: #d8b4fe;
+    }
+    .ramo.aprobado {
+      background-color: #a855f7;
+      color: white;
+      text-decoration: line-through;
+      border-color: #9333ea;
+    }
+    .ciclo {
+      grid-column: 1 / -1;
+      font-weight: bold;
+      background-color: #ede9fe;
+      border-radius: 5px;
+      padding: 6px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
   <h1>Malla Curricular Interactiva</h1>
   <div id="malla" class="malla"></div>
-  <script src="script.js"></script>
+  <script>
+    const cursos = {
+      "Nivelación en matemáticas": ["Matemática I", "Economía General I"],
+      "Nivelación en informática": ["Estadística I", "Fundamentos de Finanzas"],
+      "Nivelación en lenguaje": ["Lenguaje I"],
+      "Matemática I": ["Estadística I"],
+      "Economía General I": ["Economía General II"],
+      "Lenguaje I": ["Lenguaje II"],
+      "Fundamentos de las Ciencias Empresariales": ["Diseño Organizacional y Estrategia"],
+    };
+
+    const ciclos = {
+      "Ciclo 0": ["Nivelación en matemáticas", "Nivelación en informática", "Nivelación en lenguaje"],
+      "Ciclo I": ["Matemática I", "Economía General I", "Lenguaje I", "Fundamentos de las Ciencias Empresariales"],
+      "Ciclo II": ["Estadística I", "Fundamentos de Finanzas", "Lenguaje II"],
+      "Ciclo III": ["Economía General II", "Diseño Organizacional y Estrategia"]
+    };
+
+    const aprobados = new Set();
+    const desbloqueados = new Set(Object.keys(ciclos["Ciclo 0"]));
+
+    function crearMalla() {
+      const cont = document.getElementById("malla");
+      for (const ciclo in ciclos) {
+        const titulo = document.createElement("div");
+        titulo.className = "ciclo";
+        titulo.textContent = ciclo;
+        cont.appendChild(titulo);
+
+        for (const ramo of ciclos[ciclo]) {
+          const div = document.createElement("div");
+          div.className = "ramo";
+          div.textContent = ramo;
+          div.id = ramo;
+          if (desbloqueados.has(ramo)) div.classList.add("activo");
+          div.addEventListener("click", () => aprobar(ramo));
+          cont.appendChild(div);
+        }
+      }
+    }
+
+    function aprobar(nombre) {
+      if (!desbloqueados.has(nombre) || aprobados.has(nombre)) return;
+      aprobados.add(nombre);
+      document.getElementById(nombre).classList.add("aprobado");
+
+      if (cursos[nombre]) {
+        for (const nuevo of cursos[nombre]) {
+          desbloqueados.add(nuevo);
+          const el = document.getElementById(nuevo);
+          if (el) el.classList.add("activo");
+        }
+      }
+    }
+
+    crearMalla();
+  </script>
 </body>
 </html>
