@@ -1,69 +1,104 @@
 body {
-  background-color: #f5e6ff;
-  font-family: 'Segoe UI', sans-serif;
-  color: #333;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f3e5f5;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
+  color: #4a148c;
 }
 
-h1 {
+.titulo-malla {
   text-align: center;
+  font-size: 2.8em;
+  margin: 40px 0 20px 0;
   color: #6a1b9a;
-  margin-bottom: 2rem;
+  font-weight: 600;
 }
 
 #malla {
   display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  padding: 20px;
 }
 
 .ciclo-bloque {
-  flex: 0 0 auto;
-  background: #fefcff;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px #c9a4e8;
-  min-width: 200px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  width: 260px;
+  padding: 20px;
+  border: 1px solid #e1bee7;
 }
 
 .ciclo {
-  font-weight: bold;
-  font-size: 1.1rem;
   text-align: center;
+  font-weight: 600;
+  font-size: 1.2em;
   color: #7b1fa2;
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
 }
 
 .ciclo-contenedor {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 10px;
 }
 
 .ramo {
-  border: 2px dashed #b39ddb;
-  padding: 0.8rem;
-  border-radius: 0.6rem;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f8eafc;
+  color: #6a1b9a;
   text-align: center;
-  background-color: #f3e5f5;
-  color: #4a148c;
+  font-size: 0.95em;
   cursor: not-allowed;
-  transition: all 0.3s ease-in-out;
+  border: 2px dashed #ce93d8;
+  transition: all 0.3s ease;
 }
 
 .ramo.activo {
-  border-style: solid;
-  border-color: #8e24aa;
-  background-color: white;
-  color: #4a148c;
   cursor: pointer;
+  background-color: #ffffff;
+  border: 2px solid #ab47bc;
+}
+
+.ramo.activo:hover {
+  background-color: #ede7f6;
 }
 
 .ramo.aprobado {
   background-color: #8e24aa;
   color: white;
   border: none;
-  transform: scale(1.02);
+  cursor: default;
+}
+
+.reset-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ab47bc;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.reset-button:hover {
+  background-color: #8e24aa;
+}
+
+@media (max-width: 768px) {
+  #malla {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ciclo-bloque {
+    width: 90%;
+  }
 }
