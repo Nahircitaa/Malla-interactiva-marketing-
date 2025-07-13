@@ -1,44 +1,27 @@
 const cursos = {
-  // Ciclo 0
   "Nivelación en matemáticas": ["Matemática I", "Economía General I"],
   "Nivelación en informática": ["Estadística I", "Fundamentos de Finanzas"],
   "Nivelación en lenguaje": ["Lenguaje I"],
-
-  // Ciclo I
   "Matemática I": ["Estadística I"],
   "Economía General I": ["Economía General II"],
   "Lenguaje I": ["Lenguaje II"],
   "Fundamentos de las Ciencias Empresariales": ["Diseño Organizacional y Estrategia"],
-
-  // Ciclo II
   "Estadística I": ["Métodos Cuantitativos para la Gestión en las Organizaciones", "Analítica de Datos para los Negocios", "Finanzas Corporativas I"],
   "Fundamentos de Marketing": ["Marketing sostenible", "Gestión de Productos", "International Marketing", "Marketing B2B", "Estrategia"],
   "Lenguaje II": ["Bloque de Procesos Sociales"],
   "Fundamentos de Contabilidad": ["Contabilidad Financiera Intermedia", "Fundamentos de Finanzas"],
-
-  // Ciclo III
   "Comportamiento del Consumidor": ["Gestión de Productos"],
   "Analítica de Datos para los Negocios": ["Análisis Multivariado para los Negocios"],
   "Diseño Organizacional y Estrategia": ["Innovación y Gestión en Negocios Digitales"],
-
-  // Ciclo IV
   "Gestión de Productos": ["Pricing", "Canales de Distribución", "Investigación de Mercados", "Estrategia de Comunicación y promoción", "Estrategias de Branding", "Marketing de Servicios"],
   "Análisis Multivariado para los Negocios": ["Sistemas de Información y Análisis de Datos", "Investigación de Mercados Aplicada"],
-
-  // Ciclo V
   "Pricing": ["Métricas y Analítica de Marketing"],
   "Investigación de Mercados": ["Investigación de Mercados Aplicada"],
   "Fundamentos de Finanzas": ["Finanzas Corporativas I", "Métricas y Analítica de Marketing"],
-
-  // Ciclo VI
   "Canales de Distribución": ["Trade Marketing", "Métricas y Analítica de Marketing"],
   "Estrategia de Comunicación y promoción": ["Marketing Digital y Redes Sociales", "Business Agility", "Métricas y Analítica de Marketing"],
   "Investigación Académica": ["Investigación en Marketing I"],
-
-  // Ciclo VII
   "Trade Marketing": ["Gestión Comercial"],
-
-  // Ciclo IX
   "Investigación en Marketing I": ["Investigación en Marketing II"]
 };
 
@@ -79,7 +62,7 @@ const ciclos = {
 };
 
 const aprobados = new Set();
-const desbloqueados = new Set(Object.keys(ciclos["Ciclo 0"]));
+const desbloqueados = new Set(ciclos["Ciclo 0"]);
 
 function crearMalla() {
   const container = document.getElementById("malla");
@@ -114,4 +97,4 @@ function aprobarRamo(nombre) {
   }
 }
 
-crearMalla();
+document.addEventListener("DOMContentLoaded", crearMalla);
