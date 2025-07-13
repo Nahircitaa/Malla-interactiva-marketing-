@@ -62,7 +62,7 @@ const ciclos = {
 };
 
 const aprobados = new Set();
-const desbloqueados = new Set(ciclos["Ciclo 0"]);
+const desbloqueados = new Set(Object.keys(ciclos["Ciclo 0"]));
 
 function crearMalla() {
   const container = document.getElementById("malla");
@@ -87,12 +87,13 @@ function crearMalla() {
 function aprobarRamo(nombre) {
   if (aprobados.has(nombre)) return;
   aprobados.add(nombre);
-  document.getElementById(nombre).classList.add("aprobado");
+  const ramo = document.getElementById(nombre);
+  ramo.classList.add("aprobado");
   if (cursos[nombre]) {
-    for (const dependiente of cursos[nombre]) {
-      const el = document.getElementById(dependiente);
-      if (el) el.classList.add("activo");
-      desbloqueados.add(dependiente);
+    for (const siguiente of cursos[nombre]) {
+      desbloqueados.add(siguiente);
+      const nodo = document.getElementById(siguiente);
+      if (nodo) nodo.classList.add("activo");
     }
   }
 }
