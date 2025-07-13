@@ -1,53 +1,71 @@
-/* Fondo general de la página: lila claro */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f3e8ff; /* lila claro */
-  color: #333;
+  background-color: #f5e6ff; /* fondo aesthetic lila */
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 20px;
+  color: #4b0082;
 }
 
-/* Contenedor principal */
+#header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #8e44ad;
+}
+
+p {
+  font-size: 1.1em;
+  color: #5d3a8d;
+}
+
 #malla {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Título de cada ciclo */
+/* Títulos de ciclo */
 .ciclo {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 40px;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-top: 50px;
   color: #6a0dad;
+  text-shadow: 1px 1px 2px #d1b3ff;
 }
 
-/* Caja básica para cada ramo */
+/* Cursos generales */
 .ramo {
-  background-color: #d1b3ff; /* color base para ramos bloqueados */
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 10px 15px;
+  background-color: #e8d6ff;
+  border: 2px dashed #cda5ff;
+  border-radius: 12px;
+  padding: 14px 20px;
   margin: 8px;
-  width: 280px;
+  width: 320px;
   text-align: center;
-  font-weight: bold;
-  font-size: 14px;
-  transition: 0.3s;
-  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+  color: #6a0dad;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  user-select: none;
 }
 
-/* Ramo disponible (clicable): fondo blanco */
+/* Cursos disponibles */
 .ramo.activo {
-  background-color: white;
-  color: #6a0dad;
-  border: 2px solid #6a0dad;
+  background-color: #ffffff !important;
+  color: #6a0dad !important;
+  border: 2px solid #ba68c8;
   cursor: pointer;
 }
 
-/* Ramo aprobado: fondo lila oscuro */
+/* Cursos ya aprobados */
 .ramo.aprobado {
-  background-color: #6a0dad;
-  color: white;
-  border: 2px solid #4b0082;
+  background-color: #ba68c8 !important;
+  color: #ffffff !important;
+  border: 2px solid #7b1fa2;
+  text-decoration: line-through;
 }
