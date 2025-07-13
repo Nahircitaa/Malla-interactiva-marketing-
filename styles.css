@@ -1,83 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-
 body {
-  background-color: #f6e6ff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f7f2fa;
   margin: 0;
-  padding: 30px;
-  color: #4b0082;
+  padding: 0;
+  color: #333;
 }
 
-#header {
+header {
   text-align: center;
-  margin-bottom: 40px;
+  background-color: #cba4e8;
+  padding: 20px 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-#header h1 {
-  font-size: 2.8em;
-  font-weight: bold;
-  color: #8e44ad;
-  text-shadow: 1px 1px 3px rgba(136, 66, 181, 0.3);
-  margin: 0 auto;
+h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: #fff;
 }
 
-#header p {
-  font-size: 1.1em;
-  color: #5d3a8d;
+#malla {
+  padding: 30px 10px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.malla {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-/* Ciclo y sus cursos */
 .ciclo {
-  font-size: 1.6em;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #6a0dad;
-  text-shadow: 1px 1px 2px #d1b3ff;
-  text-align: center;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #6d42a8;
 }
 
-/* Contenedor de ramos por ciclo */
 .ciclo-contenedor {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 15px;
+  margin-bottom: 20px;
 }
 
-/* Diseño de cada curso */
 .ramo {
-  background-color: #e8d6ff;
-  border: 2px dashed #cda5ff;
-  border-radius: 12px;
-  padding: 14px 20px;
-  width: 280px;
+  background-color: #e6d5f7;
+  color: #5a2c91;
+  padding: 12px;
+  border-radius: 10px;
+  min-width: 200px;
   text-align: center;
-  font-weight: 500;
-  font-size: 15px;
-  color: #6a0dad;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  user-select: none;
+  cursor: default;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-/* Disponible para aprobar */
 .ramo.activo {
-  background-color: #ffffff;
-  color: #6a0dad;
-  border: 2px solid #ba68c8;
   cursor: pointer;
+  background-color: #ffffff;
+  border: 2px solid #b97df0;
 }
 
-/* Ya aprobado */
+.ramo.activo:hover {
+  background-color: #f0e6fb;
+}
+
 .ramo.aprobado {
-  background-color: #ba68c8 !important;
-  color: white !important;
-  border: 2px solid #7b1fa2;
+  background-color: #d0b3f0;
+  color: #4a206a;
   text-decoration: line-through;
 }
