@@ -40,7 +40,18 @@ const ciclos = {
 };
 
 const ramosAprobados = new Set();
-const ramosDisponibles = new Set(ciclos["Ciclo 0"]);
+// Obtener todos los ramos que existen en la malla
+const todosLosRamos = Object.values(ciclos).flat();
+
+// Detectar ramos que NO tienen prerequisitos
+const ramosSinRequisitos = todosLosRamos.filter(ramo => {
+  // Si no está listado como llave en "prerequisitos", entonces no depende de otro ramo
+  return !Object.values(prerequisitos).flat().includes(ramo);
+});
+
+// Marcar como disponibles todos los ramos sin prerequisitos
+const ramosDisponibles = new Set(ramosSinRequisitos);
+
 
 function crearMalla() {
   const contenedor = document.getElementById("malla");
