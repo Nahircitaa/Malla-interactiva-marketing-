@@ -1,68 +1,81 @@
+/* Fondo general aesthetic */
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f7f2fa;
   margin: 0;
   padding: 0;
-  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f3e8ff;
+  color: #4a2c70;
 }
 
+/* Header con título centrado */
 header {
+  background-color: #d6b3f0;
+  padding: 30px 10px;
   text-align: center;
-  background-color: #cba4e8;
-  padding: 20px 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   margin: 0;
-  font-size: 2.2rem;
-  color: #fff;
+  font-size: 2.5rem;
+  color: #3d1f5e;
 }
 
-#malla {
-  padding: 30px 10px;
+/* Contenedor principal */
+main {
+  padding: 20px;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
 }
 
+/* Estilo para los títulos de ciclo */
 .ciclo {
-  margin-top: 30px;
+  font-size: 1.5rem;
   font-weight: bold;
-  font-size: 1.3rem;
-  color: #6d42a8;
+  margin-top: 40px;
+  color: #5d3a8d;
+  border-bottom: 2px solid #bfa5e3;
+  padding-bottom: 5px;
 }
 
+/* Contenedor de los ramos */
 .ciclo-contenedor {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-top: 15px;
 }
 
+/* Cada ramo individual */
 .ramo {
-  background-color: #e6d5f7;
-  color: #5a2c91;
-  padding: 12px;
+  padding: 15px 20px;
+  background-color: #e5ccff;
   border-radius: 10px;
   min-width: 200px;
   text-align: center;
-  cursor: default;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  color: #4a2c70;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  opacity: 0.5;
+  transition: all 0.3s ease;
 }
 
+/* Ramo activo (puede ser clickeado) */
 .ramo.activo {
   cursor: pointer;
-  background-color: #ffffff;
-  border: 2px solid #b97df0;
+  opacity: 1;
+  background-color: white;
+  border: 2px solid #b76df9;
 }
 
+/* Hover */
 .ramo.activo:hover {
-  background-color: #f0e6fb;
+  background-color: #f3e0ff;
 }
 
+/* Ramo aprobado */
 .ramo.aprobado {
-  background-color: #d0b3f0;
-  color: #4a206a;
+  background-color: #b76df9;
+  color: white;
   text-decoration: line-through;
+  opacity: 1;
 }
