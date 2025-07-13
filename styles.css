@@ -1,15 +1,12 @@
-/* Fondo general aesthetic */
 body {
   margin: 0;
-  padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f3e8ff;
-  color: #4a2c70;
+  background-color: #f8f0ff;
+  color: #3c0064;
 }
 
-/* Header con título centrado */
 header {
-  background-color: #d6b3f0;
+  background-color: #d5aaff;
   padding: 30px 10px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -18,64 +15,63 @@ header {
 h1 {
   margin: 0;
   font-size: 2.5rem;
-  color: #3d1f5e;
+  color: #32003d;
 }
 
-/* Contenedor principal */
+/* Main */
 main {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Estilo para los títulos de ciclo */
+/* Ciclo */
 .ciclo {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
   margin-top: 40px;
-  color: #5d3a8d;
+  margin-bottom: 10px;
+  color: #5c2a8d;
   border-bottom: 2px solid #bfa5e3;
   padding-bottom: 5px;
 }
 
-/* Contenedor de los ramos */
+/* Contenedor de ramos */
 .ciclo-contenedor {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  margin-top: 15px;
 }
 
-/* Cada ramo individual */
+/* Ramo */
 .ramo {
+  background-color: #e8d6ff;
+  color: #4a2c70;
   padding: 15px 20px;
-  background-color: #e5ccff;
   border-radius: 10px;
   min-width: 200px;
   text-align: center;
-  color: #4a2c70;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   opacity: 0.5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
-/* Ramo activo (puede ser clickeado) */
+/* Activable */
 .ramo.activo {
   cursor: pointer;
+  background-color: #fff;
   opacity: 1;
-  background-color: white;
-  border: 2px solid #b76df9;
+  border: 2px solid #a24bff;
 }
 
-/* Hover */
+/* Hover sobre disponible */
 .ramo.activo:hover {
   background-color: #f3e0ff;
 }
 
-/* Ramo aprobado */
+/* Aprobado */
 .ramo.aprobado {
-  background-color: #b76df9;
+  background-color: #a24bff;
   color: white;
   text-decoration: line-through;
-  opacity: 1;
 }
