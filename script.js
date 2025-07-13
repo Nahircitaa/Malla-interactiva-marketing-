@@ -12,7 +12,7 @@ const cursos = {
 
   // Ciclo II
   "Estadística I": ["Métodos Cuantitativos para la Gestión en las Organizaciones", "Analítica de Datos para los Negocios", "Finanzas Corporativas I"],
-  "Fundamentos de Marketing": ["Marketing Sostenible", "Gestión de Productos", "International Marketing", "Marketing B2B", "Estrategia"],
+  "Fundamentos de Marketing": ["Marketing sostenible", "Gestión de Productos", "International Marketing", "Marketing B2B", "Estrategia"],
   "Lenguaje II": ["Bloque de Procesos Sociales"],
   "Fundamentos de Contabilidad": ["Contabilidad Financiera Intermedia", "Fundamentos de Finanzas"],
 
@@ -22,7 +22,7 @@ const cursos = {
   "Diseño Organizacional y Estrategia": ["Innovación y Gestión en Negocios Digitales"],
 
   // Ciclo IV
-  "Gestión de Productos": ["Pricing", "Canales de Distribución", "Investigación de Mercados", "Estrategia de Comunicación y promoción", "Estrategia de Branding", "Marketing de Servicios"],
+  "Gestión de Productos": ["Pricing", "Canales de Distribución", "Investigación de Mercados", "Estrategia de Comunicación y promoción", "Estrategias de Branding", "Marketing de Servicios"],
   "Análisis Multivariado para los Negocios": ["Sistemas de Información y Análisis de Datos", "Investigación de Mercados Aplicada"],
 
   // Ciclo V
@@ -32,7 +32,7 @@ const cursos = {
 
   // Ciclo VI
   "Canales de Distribución": ["Trade Marketing", "Métricas y Analítica de Marketing"],
-  "Estrategias de Comunicación y promoción": ["Marketing Digital y Redes Sociales", "Business Agility", "Métricas y Analítica de Marketing"],
+  "Estrategia de Comunicación y promoción": ["Marketing Digital y Redes Sociales", "Business Agility", "Métricas y Analítica de Marketing"],
   "Investigación Académica": ["Investigación en Marketing I"],
 
   // Ciclo VII
@@ -62,7 +62,7 @@ const ciclos = {
     "Pricing", "Investigación de Mercados", "Estrategias de Branding", "Sistemas de Información y Análisis de Datos", "Fundamentos de Finanzas", "Bloque de Desarrollo del Pensamiento Crítico"
   ],
   "Ciclo VI": [
-    "Canales de Distribución", "Investigación de Mercados Aplicada", "Estrategias de Comunicación y promoción", "Innovación y Gestión en Negocios Digitales", "Finanzas Corporativas I", "Investigación Académica"
+    "Canales de Distribución", "Investigación de Mercados Aplicada", "Estrategia de Comunicación y promoción", "Innovación y Gestión en Negocios Digitales", "Finanzas Corporativas I", "Investigación Académica"
   ],
   "Ciclo VII": [
     "Trade Marketing", "Marketing Relacional y CRM", "Marketing Digital y Redes Sociales", "Business Agility", "Bloque Desarrollo Personal", "Bloque de Desarrollo del Pensamiento Crítico"
@@ -115,4 +115,3 @@ function aprobarRamo(nombre) {
 }
 
 crearMalla();
-
