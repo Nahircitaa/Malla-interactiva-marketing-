@@ -48,6 +48,19 @@ function guardarProgreso() {
   localStorage.setItem("ramosAprobados", JSON.stringify([...ramosAprobados]));
 }
 
+function crearBotonReset() {
+  const boton = document.createElement("button");
+  boton.textContent = "Reiniciar progreso";
+  boton.className = "reset-button";
+  boton.onclick = () => {
+    if (confirm("¿Estás seguro de que quieres reiniciar la malla?")) {
+      localStorage.removeItem("ramosAprobados");
+      location.reload();
+    }
+  };
+  document.body.prepend(boton);
+}
+
 function crearMalla() {
   const contenedor = document.getElementById("malla");
 
@@ -130,4 +143,7 @@ function aprobarRamo(nombre) {
   }
 }
 
-window.onload = crearMalla;
+window.onload = () => {
+  crearBotonReset();
+  crearMalla();
+};
